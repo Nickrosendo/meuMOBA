@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html ng-app="appcadastro" ng-cloak lang="en">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/loljinha_icon_81U_icon.ico">
+    <title>LOLjinha v1.0 BETA</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link href="css/carousel.css" rel="stylesheet">
+
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    input.ng-dirty.ng-invalid {
+      border-color: red;
+    }
+    </style>
+	
+</head>
+<body>
+<div class="container">
+<div class="jumbotron">
+<!-- CONTEUDO PRINCIPAL DO SITE_____________________________________ -->
+		<div ng-controller="userCtrl">
+			<form name="userForm" ng-submit="cadastraUsu(userInfo)">
+			<div class="well well-lg">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Nome: </span>
+  							<input name="fName" ng-model="userInfo.fName" ng-required="true" maxlength="25" class="form-control" placeholder="ex:seu Nome" aria-describedby="sizing-addon1">
+						</div>
+					</div>	
+
+					<div class="col-sm-6 col-md-7">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*SobreNome: </span>
+  							<input name="lName" ng-model="userInfo.lName" ng-required="true"  maxlength="37" type="text" class="form-control" placeholder="ex:seu SobreNome" aria-describedby="sizing-addon1">
+						</div>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<span class="error-message label label-danger" ng-show="userForm.fName.$dirty
+        && userForm.fName.$error.required">Campo Nome em branco
+        </span>
+					</div>
+						
+
+					<div class="col-sm-6 col-md-6">
+						<span class="error-message label label-danger" ng-show="userForm.lName.$dirty
+        && userForm.lName.$error.required">Campo SobreNome em branco
+        </span>
+	
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-3">
+						<div class="input-group input-group-lg">
+						<span class="input-group-addon" id="sizing-addon1">*Data de Nascimento</span>
+						<a></a>
+						</div>
+					</div>	
+					
+					<div class="col-sm-12 col-md-12 col-lg-3">
+						<div class="input-group input-group-lg">
+							
+  							<span class="input-group-addon" id="sizing-addon1">Dia:</span>
+  							<input ng-blur="Valida_Data(userInfo)" id="txtdia" type="number" name="Dia" ng-model="userInfo.Dia" ng-required="true" min="1"   class="form-control" placeholder="ex:30" aria-describedby="sizing-addon1">
+  							
+  							
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-3">
+						<div class="input-group input-group-lg">
+						<span class="input-group-addon" id="sizing-addon1"> Mês:   </span>
+  							<input ng-blur="Valida_Data(userInfo)" id="txtmes"type="number" min="1" max="12" name="Mes" ng-model="userInfo.Mes" ng-required="true" maxlength="2" class="form-control" placeholder="ex:12" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-3">
+						<div class="input-group input-group-lg">
+						<span class="input-group-addon" id="sizing-addon1"> Ano:   </span>
+  							<input ng-blur="Valida_Data(userInfo)" id="txtano" type="number" min="1850" max="valida_futuro(ano)" name="Ano" ng-model="userInfo.Ano" ng-required="true" class="form-control" placeholder="ex:1997" aria-describedby="sizing-addon1">
+						</div>
+					</div>			
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-3"></div>
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<span class="error-message label label-danger" ng-show="userForm.Dia.$dirty && userForm.Dia.$invalid">Campo Dia inválido</span>
+						</div>
+						
+					<div class="col-sm-6 col-md-3">
+						<span class="error-message label label-danger" ng-show="userForm.Mes.$dirty && userForm.Mes.$invalid">Campo Mes inválido</span>
+					</div>
+
+					<div class="col-sm-6 col-md-3">
+						<span class="error-message label label-danger" ng-show="userForm.Ano.$dirty && userForm.Ano.$invalid">Campo Ano inválido</span>
+					</div>
+				</div>	
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-3">
+					<div class="btn-group btn-group-lg" role="group" aria-label="Sexo">
+						<div class="input-group input-group-lg">
+						<span class="input-group-addon" id="sizing-addon1">*Sexo: </span>
+						
+							<div class="dropup">	
+							
+							  <select class="btn btn-default btn-lg dropdown-toggle" name="Sexo" ng-model="userInfo.Sexo" ng-required="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							  </span>
+							  	<option value="Feminino">Feminino</option>
+							  	<option value="Masculino">Masculino</option>
+							  	</select>
+							</div>
+						</div>	
+					</div><!-- btn group -->
+					</div><!-- col -->
+				</div><!-- row -->	
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Telefone 1: </span>
+  							<input id="txttelefone" ng-model="userInfo.Telefone1" 
+  							onkeyup="formataCel(this, event);" ng-required="true" name="Telefone1" type="phone"  maxlength="15" class="form-control" placeholder="ex: (11) 1234-5678" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">(Opcional)Telefone 2: </span>
+  							<input id="txttelefone2" onkeyup="formataCel(this, event);" type="phone" maxlength="15" class="form-control" placeholder="ex: (11) 1234-5678" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<span class="error-message label label-danger"  ng-show="userForm.Telefone1.$dirty && userForm.Telefone1.$error.required">Campo Telefone em branco</span>
+						</div>
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6 col-md-9">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Email: </span>
+  							<input id="txtemail" type="email" name="Email" ng-model="userInfo.Email" ng-required="true" maxlength="90" class="form-control" placeholder="ex:user@grades.com" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<span class="error-message label label-danger" ng-show="userForm.Email.$dirty && userForm.Email.$error.required">Campo Email em branco
+						</span>
+						<span class="error-message label label-danger" ng-show="userForm.Email.$dirty && userForm.Email.$invalid">Campo Email inválido
+						</span>
+					</div>
+					
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<div class="row">	
+					<div class="col-sm-6 col-md-9">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Confirmação de Email:  </span>
+  							<input ng-blur="checkEmail(userInfo)" id="txtconfirmaemail" name="ConfirmaEmail" ng-model="userInfo.ConfirmaEmail" ng-required="true" maxlength="90" type="email" class="form-control" placeholder="ex:user@grades.com" aria-describedby="sizing-addon1">
+
+						</div>	
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<span class="error-message label label-danger" ng-show="userForm.ConfirmaEmail.$dirty && userForm.ConfirmaEmail.$error.required">Campo de Confirmação de Email em branco
+						</span>
+						<span class="error-message label label-danger" ng-show="userForm.ConfirmaEmail.$dirty && userForm.ConfirmaEmail.$invalid">Emails não coincidem
+						</span>
+					</div>
+					
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Senha: </span>
+  							<input id="txtsenha" minlength="8"  type="password" name="Senha" ng-model="userInfo.Senha" ng-required="true" class="form-control" placeholder="Max15digitos" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<div class="input-group input-group-lg">
+  							<span class="input-group-addon" id="sizing-addon1">*Confirma Senha: </span>
+  							<input ng-blur="checkSenha(userInfo)"  id="txtconfirmasenha" name="ConfirmaSenha" ng-model="userInfo.ConfirmaSenha" minlength="8" ng-required="true" type="password" class="form-control" placeholder="ex:userpassword" aria-describedby="sizing-addon1">
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<span class="error-message label label-danger" ng-show="userForm.Senha.$dirty && userForm.Senha.$invalid">Senha muito curta(no mínimo 8 dígitos )
+						</span>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-5">
+						<span class="error-message label label-danger" ng-show="userForm.ConfirmaSenha.$dirty && userForm.ConfirmaSenha.$invalid">As senhas não coincidem.
+						</span>
+					</div>
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="container">
+					<input id="cbtermos" name="Termos" ng-model="userInfo.Termos" ng-true-value="'agreed'" ng-false-value="'disagreed'" ng-required="true" type="checkbox" aria-label="Termos"> Aceito os Termos de Uso e a Política de Privacidade.
+
+					<input id="cbfeed" type="checkbox" name="subscribe" ng-model="userInfo.subscribe" ng-true-value="'Subscribe'" ng-false-value="'Don\'t Subscribe'" aria-label="Feed"> Aceito receber notícias do site no e-mail fornecido nesse cadastro.
+					</div>
+				</div>
+				<br/>
+				<br/>
+				
+				
+
+				
+				<button id="btncadastro" type="submit" value="cadastra" ng-disabled="userForm.$invalid" class="btn btn-success btn-lg center-block">
+		   							<h4><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> 	 Cadastrar
+		   							</span>
+		   							</h4>
+		   		</button>
+		   		<br><br>
+		   		<ul>
+		   			<li ng-repeat="item in user">
+		   			{{'Usuario:' + item.fName+','+ item.lName +','+ item.Data_Nascimento+','+item.Sexo+','+item.Telefone1}}
+		   			</li>
+		   		</ul>
+						
+			</form>
+			</div><!-- ng-controller -->
+		</div><!-- Jumbotron -->	
+		</div><!-- Container do Jumbotron -->
+
+<!-- Javascript e JQuery do bootstrap e do angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/script_cadastro.js"></script>
+<script src="js/Valida.js"></script>
+<!--_______________________________________________-->
+</body>
+</html>

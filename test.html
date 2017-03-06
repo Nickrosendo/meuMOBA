@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/meumoba2_xUw_icon.ico">
+    <title>MeuMOBA v1.0 BETA</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link href="css/carousel.css" rel="stylesheet">
+    <!-- Included when we wait to call AngularJS at the end of the document -->
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    </style>
+    </head>
+<body>
+<a data-toggle="modal" data-target="#myModal" class="btn btn-success botao_login glyphicon glyphicon-login" role="button">Log-in
+</a>
+
+<a data-toggle="modal" data-target="#login2" class="btn btn-success botao_login glyphicon glyphicon-login" role="button">Contato
+</a>
+
+<div>
+        <!-- Modal Login -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login meuMOBA.com</h4>
+        <a href="https://www.facebook.com/nicolasoliveira.rosendo"class="btn pull-right" data-toggle="tooltip" title="Entrar com o Facebook">
+            <span class="social_buttons">
+              <img src="img/social_icon/login_facebook.PNG">
+            </span>
+          </a>
+          <a href="#"class="btn pull-right">
+            <span class="social_buttons" data-toggle="tooltip" title="Entrar com o Google Plus">
+              <img class="social_login" src="img/social_icon/g+_login.PNG">
+            </span>
+          </a>
+            
+          <a href="#"class="btn pull-right">
+            <span class="social_buttons" data-toggle="tooltip" title="Entrar com o Twitter">
+              <img src="img/social_icon/twitter_login.PNG">
+            </span>
+          </a>
+      </div>
+      <div class="modal-body">
+        <form name="loginForm" action="login.php" method="post">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email</label>
+            <input type="email" name="email" required="true" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Senha</label>
+            <input type="password" name="senha" required="true" class="form-control" id="exampleInputPassword3" placeholder="Password">
+          </div>
+          <div class="checkbox">
+            <label >
+              <input value="true" type="checkbox"> Permanecer conectado
+            </label>
+          </div>
+          <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-success glyphicon glyphicon-log-in">Entrar</button>
+
+          <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- fim do modal de login -->
+
+<div>
+        <!-- Modal Login2 -->
+<div class="modal fade" id="login2" tabindex="-1" role="dialog" aria-labelledby="login2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="login2">Entrar em contato com o anunciante</h4>
+      </div>
+      <div class="modal-body">
+        <form name="loginForm" action="login.php" method="post">
+          <textarea placeholder="Seu Texto aki..." class="col-md-12"></textarea><br>
+          <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-success glyphicon glyphicon-envelope">Enviar</button>
+
+          <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- fim do modal de login2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/angular.js"></script>
+<script src="exam3.js"></script>
+</body>
+</html>
